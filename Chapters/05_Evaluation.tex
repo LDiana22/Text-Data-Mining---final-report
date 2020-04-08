@@ -1,0 +1,22 @@
+\subsection{Classification}
+For the classification task, we have reported the results in Table \ref{tab:evaluation}.
+\begin{table}[!htb]
+  \centering
+    \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    &Accuracy&Sensitivity&Specificity&Precision&AUC\\
+    \hline
+    Naïve Bayes&82.17\%&84\%&81\%&81\%&89.89\%\\
+    \hline
+    SVM&83.67\%&85\%&83\%&83\%&91.19\%\\
+    \hline
+    MLP&77.33\%&76\%&79\%&80\%&85\%\\
+    \hline
+    \end{tabular}
+    \caption{Classification evaluation}
+    \label{tab:evaluation}
+\end{table}
+
+SVM outperformed both Naïve Bayes and MLP in all the metrics reported, the F1 score (0.84) also being the highest among all models. This indicates that SVM has certian robustness against the other two models. To further prove that SVM outperforms the other models, we have analyzed the ROC (Receiver Operating Characteristic) curves that can be found in the Appendices.
+
+\subsection{Keyword and Key-phrase extraction}

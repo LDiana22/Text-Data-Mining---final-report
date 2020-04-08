@@ -1,0 +1,40 @@
+\subsection{Data Cleaning}
+To preprocess textual data, we perform a number of steps for cleaning the data. 
+
+\subsubsection{Punctuation removal}
+Although the punctuation sometimes contains semantic nuances, the removal of the punctuation allows us to embed the words without introducing noise in the data.
+\subsubsection{Markup language and emoji removal}
+Social media data and scraped reviews may contain HTML tags, emojis or additional characters such as "\textless br\textgreater", "\textless span\textgreater", "\textless b\textgreater" that bring challenges when tokenization is performed for the text, also bringing noise in the data in the later steps of the preprocess pipeline. Empirical results also support this claim, the removal of such characters and HTML tags significally improving the results.
+
+
+\subsection{Data Integration}
+The dataset comprises textual data from three different sources, that have been integrated and jointly used in the training process.
+
+\subsection{Data Reduction}
+The data is formed out of short text (movie or product reviews). For the classification task, we are using the entire text, aiming to capture the contextual semantics behind it, without altering the original text. For the text mining task, some of the key-phrase extraction algorithms can also be adapted to summarize the instances under classification, though our focus is on key-words and key-terms that describe the main sentiments conveyed in the training set.
+
+\subsection{Data Transformation}
+Unlike numeric data, the textual data raises challenges for automatic processing, needing to be transformed into numerical features. Thus, data transformation is required to translate the dataset into a new format that can be interpreted by model. The following subsections describe the techniques applied on the data.
+
+\subsubsection{Lowercasing}
+One of the preprocessing steps needed before embedding the text is transforming the entire dataset to lowercase. For the English language, capitalization does not bring additional semantic information (for the common words), thus this step is needed to avoid out of vocabulary words (both the words "review" and "Review" should have the same embedding).
+
+\subsubsection{Vectorization}
+Vectorization is the process of transforming natural language into vectors of numerical features.
+
+One of the earliest methods for vectorization is replacing each word by its frequence in a document. The disadvantage is that there are words that often appear in every sentence, like pronouns or prepositions, their weight becoming very large in the resulting embedding matrix.
+% These words will have great weight value in the resulting embedding matrix, but they might not carry the information needed to discriminate the sentence. For example, "the" is one of the most frequent words that can be used in many different context, contributing at expressing both positive and negative sentiments.
+\paragraph{TF-IDF}\label{tfidf}
+To overcome this problem, TF-IDF score is used for text vectorization. The related formulae are:
+\begin{enumerate}
+    \item TF (Term Frequency):
+    $TF(t)=\frac{Number\ of\ items\ term\ t\ appear\ in\ a\ document}{Total\ number\ of\ terms\ in\ the\ document}$
+    \item IDF (Inverse Document Frequency):
+    $IDF(t)=\frac{Total\ number\ of\ documents}{Number\ of\ documents\ with\ term\ t\ in\ it}$
+    \item TF-IDF:
+    $TF-IDF(t)=TF(t)*IDF(t)$
+\end{enumerate}
+TF-IDF not only considers the local frequency, but also the global frequency which means the frequent words that do not bring much semantic information will have relatively low weight. Words with high TF-IDF scores imply a strong relationship with the document they appear in, suggesting that if that word were to appear in a query, the document could be of interest to the user.\cite{lehmer1919}
+
+\paragraph{Word embeddings}
+Another approach frequently used in the literature is to use pretrained word embeddings. We have chose to use GloVe (Global Vectors for Word Representation \cite{glove}) pre-trained embeddings, trained on the Wikipedia corpus.

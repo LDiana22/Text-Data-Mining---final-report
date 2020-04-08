@@ -1,0 +1,44 @@
+\subsection{Problem definition}
+With the rapid growth of the social media platforms, the amount of textual data to be processed has become overwhelming for humans. Whether the data comes as reviews for product or movies, short text shared on the social media platforms, or blogs and news, automatically extracting insights from it has become a necessity.
+
+
+\subsection{Background}
+
+\paragraph{Sentiment analysis} is one of the Natural Language Processing tasks of classifying a text as conveying a positive or negative emotion. This tasks comes in multiple flavours: binary (the task we are focusing on), multi-aspect \cite{multiaspect}, or multiple opinion polarity sentiment. For the purpose of this project, we consider the binary task and extend it to further extract insights from the corpora formed of the instances in each of the two category through key-phrase extraction.
+
+
+\paragraph{Text mining (text data mining)} is the process of extracting non-trivial patterns and knowledge from text documents.
+Unsupervised key-phrase (key-term) extraction is an important task for information retrieval and text mining for performing text summarization, text classification, topic detection or for determining the similarity for text clustering. 
+
+The NLP task of \textbf{keyword extraction} is important for fields such as information retrieval, text summarization, text classification, topic detection or as a measure of similarity for text clustering. 
+The keywords refer to single words, while a keyphrase is a multi-word lexeme that is "clumped as a unit"\cite{manningshutze}. They have the capability of summarizing a context, allowing one to organize and find documents by content. They are both be referred to as \textit{key terms}.
+
+\subsection{Dataset}
+To support and test our aproaches, we use the UCI sentiment analysis dataset \cite{ucidata} This dataset contains 3000 reviews extracted from three different websites (IMDB, Amazon and Yelp). Each entry is labelled with either a positive (denoted by 1) or a negative (denoted by 0) score.
+% , with following format:
+% \begin{table}[!htb]
+%     \centering
+%     \begin{tabular}{|c|c|}
+%     \hline
+%     Review text&Score\\
+%     \hline
+%     ...&1\\
+%     ...&0\\
+%     \hline
+%     \end{tabular}
+%     \caption{Format of Dataset}
+%     \label{tab:data_format}
+% \end{table}
+
+
+\subsection{Main Tasks}
+This project focuses on two main tasks: classification and unsupervised key-term extraction. Thus, each section of the report will contain subsections dedicated to each of these.
+Our approach focuses on two main goals:
+\begin{enumerate}
+    \item Comparing the performance of different classification Machine Learning algorithms (Naïve Bayes Classifier, Support Vector Machine, Neural Network) - discussed in Section \ref{classification};
+    \item Comparing multiple unsupervised statistical key-term extraction methods by measuring the impact on the classification of the key-phrases added to the instance under classification - detailed in Section \ref{keyword}
+\end{enumerate}
+% \subsubsection{Classification}
+% For the classification task, we perform a comparison between different machine learning algorithms, reporting the accuracy, sensitivity, specificity, precision and Area Under Curve (AUC) as the results obtained on the test set.
+% \subsubsection{Keyword Extraction}
+% Besides evaluating different classification models, further research has been performed, analyzing different unsupervised keyword extraction methods. Since this is an unsupervised exploration of the collection of training instances, we compare the contribution of different dictionaries of keywords on the classification task.
