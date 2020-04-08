@@ -34,7 +34,7 @@ To overcome this problem, TF-IDF score is used for text vectorization. The relat
     \item TF-IDF:
     $TF-IDF(t)=TF(t)*IDF(t)$
 \end{enumerate}
-TF-IDF not only considers the local frequency, but also the global frequency which means the frequent words that do not bring much semantic information will have relatively low weight. Words with high TF-IDF scores imply a strong relationship with the document they appear in, suggesting that if that word were to appear in a query, the document could be of interest to the user.\cite{lehmer1919}
+TF-IDF not only considers the local frequency, but also the global frequency which means the frequent words that do not bring much semantic information will have relatively low weight. Words with high TF-IDF scores imply a strong relationship with the document they appear in, suggesting that if that word were to appear in a query, the document could be of interest to the user.\cite{TF-IDF}
 
 \paragraph{Word embeddings}
 Another approach frequently used in the literature is to use pretrained word embeddings. We have chose to use GloVe (Global Vectors for Word Representation \cite{glove}) pre-trained embeddings, trained on the Wikipedia corpus.

@@ -20,3 +20,41 @@ For the classification task, we have reported the results in Table \ref{tab:eval
 SVM outperformed both Naïve Bayes and MLP in all the metrics reported, the F1 score (0.84) also being the highest among all models. This indicates that SVM has certian robustness against the other two models. To further prove that SVM outperforms the other models, we have analyzed the ROC (Receiver Operating Characteristic) curves that can be found in the Appendices.
 
 \subsection{Keyword and Key-phrase extraction}
+\subsubsection{Quantitative analysis}
+    \begin{table}%[width=5cm]
+        \centering
+        \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        Model& Dictionary&Accuracy& Precision & Recall & F1\\
+        \hline
+        Vanilla - LSTM& &82.68 & 0.8449 & 0.7938 & 0.8135
+        \\\hline
+        \multirow{5}{*}{LSTM+MLP\_gen}&TF-IDF& 79.44 & 0.8619 & 0.7612 & 0.7828\\
+        &RAKE\_corpus&82.51 & 0.8253 & 0.8158 & 0.8169 \\
+        &RAKE\_instance&82.68 & 0.8276 & \textbf{0.8168} &\textbf{ 0.8186} \\
+        &YAKE & \textbf{83.00 }& 0.8501 & 0.7919 & 0.8153\\
+        & TextRank &82.84 & \textbf{0.8629} & 0.7788 & 0.8139\\
+        \hline
+        \end{tabular}
+        \caption{Keyword extraction evaluation}
+        \label{tab:ke_eval}
+    \end{table}
+\subsubsection{Qualitative analysis}
+    \begin{table}[H]%[width=5cm]
+        \centering
+        \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{1.5cm}|}
+        \hline
+        Dictionary type& Avg words / keyphrase (dataset)& Avg words / keyphrase (pos) &Avg words / keyphrase (neg) & Overlap count\\\hline
+        
+        TF-IDF &1&1&1&21\\ \hline
+        RAKE (corpus)&3.61&3.74&3.48&0\\ \hline
+        RAKE (instance)&4.14&4.3&3.98&0\\ \hline
+        YAKE&1.85&1.89&1.82&23\\ \hline
+        TextRank&1.13&1.15&1.11&5\\ \hline
+        
+        
+        \end{tabular}
+        \caption{Keyphrase analysis for dictionaries of 300 entries}
+        \label{tab:ke_eval}
+    \end{table}
+

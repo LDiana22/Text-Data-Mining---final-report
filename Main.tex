@@ -4,6 +4,9 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{float} % fix tables' position in appendices
+
+\usepackage{multirow} % multi-line cell in table in experiments
 \graphicspath{{Images/}}
 \usepackage[colorinlistoftodos]{todonotes}
 \usepackage{hyperref}
@@ -40,8 +43,8 @@
 % author
 \begin{minipage}{0.4\textwidth}
 \begin{flushleft} \large
-\emph{Authors :}\\\textbf{Xiaoke \textsc{Liu}}\\ID.(300073685)
-\\\textbf{Yan \textsc{Zhang}}\\ID.(300052103)
+\emph{Authors :}\\\textbf{Xiaoke \textsc{Liu}}\\xliu294@uottawa.ca\\ID.(300073685)
+\\\textbf{Yan \textsc{Zhang}}\\yzhan648@uottawa.ca\\ID.(300052103)
 \\\textbf{Diana \textsc{Lucaci}}\\dluca058@uottawa.ca\\ID.(300098053)
 \end{flushleft}
 \end{minipage}
@@ -51,7 +54,7 @@
 \emph{Instructor:} \\
 Dr.Olubisi \textsc{Runsewe}\\
 \end{flushright}
-\end{minipage}\\[1cm]
+\end{minipage}\\[0.5cm]
 {\large \today}\\[1cm]
 
 \vfill % Fill the rest of the page with white-space
@@ -80,7 +83,7 @@ Dr.Olubisi \textsc{Runsewe}\\
 
 \section{Conclusions}
 \input{Chapters/Conclusion}
-
+\clearpage
 \bibliographystyle{plain}
 \bibliography{Bibliography.bib}
 \begin{appendices}\label{app}
