@@ -21,15 +21,22 @@ SVM outperformed both Naïve Bayes and MLP in all the metrics reported, the F1 s
 
 \subsection{Keyword and Key-phrase extraction}
 \subsubsection{Quantitative analysis}
-    \begin{table}%[width=5cm]
+This analysis provides insights about the quality of the extracted key-terms by analyzing the improvement in performance the generator architecture manages to gain when learning to choose the best candidate from the extracted dictionaries.
+
+Since all the other hyperparameters and variables are invariable in the reported experiments, what it is of interest in this analysis is the performance difference compared to the baseline. 
+As we can observe from Table \ref{tab:ke_eval}, the best accuracy is obtained with the YAKE dictionary. This approach is most accurate in terms of precision, but it underperforms in terms of recall. The best recall and balance between precision and recall (F1-score) is obtained using the RAKE algorithm. This conveys that YAKE is able to correctly classify a subset of the dataset very well, identifying some patterns in the data, while the higher RAKE's performance conveys that word co-occurences are more important for this dataset.
+
+It is also worth noting that jointly training the model on the mixed-source dataset is a challenging task, increasing the difficulty of extracting a key-phrase correlated with the review, since the dictionary also contains mixed phrases (such as movie reviews, product, or service feedback). The proportion of the source of the key-terms is not enforced for each subdataset, but only for the label (300 entries for each class).
+
+    \begin{table}[!h]%[width=5cm]
         \centering
         \begin{tabular}{|c|c|c|c|c|c|}
         \hline
         Model& Dictionary&Accuracy& Precision & Recall & F1\\
         \hline
-        Vanilla - LSTM& &82.68 & 0.8449 & 0.7938 & 0.8135
+        Vanilla - bi-LSTM& - &82.68 & 0.8449 & 0.7938 & 0.8135
         \\\hline
-        \multirow{5}{*}{LSTM+MLP\_gen}&TF-IDF& 79.44 & 0.8619 & 0.7612 & 0.7828\\
+        \multirow{5}{*}{bi-LSTM+MLP\_gen}&TF-IDF& 79.44 & 0.8619 & 0.7612 & 0.7828\\
         &RAKE\_corpus&82.51 & 0.8253 & 0.8158 & 0.8169 \\
         &RAKE\_instance&82.68 & 0.8276 & \textbf{0.8168} &\textbf{ 0.8186} \\
         &YAKE & \textbf{83.00 }& 0.8501 & 0.7919 & 0.8153\\
@@ -40,11 +47,30 @@ SVM outperformed both Naïve Bayes and MLP in all the metrics reported, the F1 s
         \label{tab:ke_eval}
     \end{table}
 \subsubsection{Qualitative analysis}
+To further understand the performance of the compared text mining algorithms, we propose some qualitative analysis methods such as exploring the obtained key-terms (through visualizations such as cloud-words - examples in the Appendices \ref{cloudwords} - or through the resulted associations between the instances and the generated keyphrases - Table \ref{tab:examples}).
+\begin{table}[!h]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+         Review & Class & Selected Key-term & Dictionary  \\ \hline
+         we will not be coming back & 0 & worst people behind & RAKE \\ \hline
+         worked perfectly & 1 & good product incredible & YAKE\\ \hline
+         the bacon is soooo good  & 1 & chef & TextRank \\ \hline
+    \end{tabular}
+    \caption{Review-keyphrases examples}
+    \label{tab:examples}
+\end{table}
+
+
+Furthermore, in Table \ref{tab:stats}, we also report statistics such as the average number of words for each dictionary individually, combined dictionaries and the number of key-terms present in both dictionaries (overlap count). 
+
+Combining the qualitative and quantitative analysis, we can observe that the best accuracy (and high precision) is obtained by 1 and 2-grams, while longer key-terms (of an average of 3.98-4.3 words per keyphrase) are more suitable for improving the recall of the baseline.
+
     \begin{table}[H]%[width=5cm]
         \centering
         \begin{tabular}{|p{3cm}|p{3cm}|p{3cm}|p{3cm}|p{1.5cm}|}
         \hline
-        Dictionary type& Avg words / keyphrase (dataset)& Avg words / keyphrase (pos) &Avg words / keyphrase (neg) & Overlap count\\\hline
+        Dictionary type& Average words / keyphrase (dataset)& Average words / keyphrase (pos) &Average words / keyphrase (neg) & Overlap count\\\hline
         
         TF-IDF &1&1&1&21\\ \hline
         RAKE (corpus)&3.61&3.74&3.48&0\\ \hline
@@ -55,6 +81,6 @@ SVM outperformed both Naïve Bayes and MLP in all the metrics reported, the F1 s
         
         \end{tabular}
         \caption{Keyphrase analysis for dictionaries of 300 entries}
-        \label{tab:ke_eval}
+        \label{tab:stats}
     \end{table}
 
